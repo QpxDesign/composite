@@ -11,7 +11,7 @@ export default function () {
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState(null);
-  const [error, setError] = useState(null);
+
   const handleSearch = (e) => {
     setSearch(e.target.value);
   };
@@ -26,8 +26,6 @@ export default function () {
       .then((res) => findSchoolData(res, search))
       .then((r) => {
         setResults(r);
-        console.log(r);
-        console.log(search);
         setLoading(false);
       });
   }
@@ -53,9 +51,12 @@ export default function () {
           </button>
         </form>
       </div>
-      {loading ? <div>Loading...</div> : null}
+      {loading ? <div style={{ paddingBottom: ".5em" }}>Loading...</div> : null}
       {results !== null && results != undefined && results != "" && !loading ? (
         <FactSheet result={results[0]} />
+      ) : null}
+      {results !== null && results.length === 0 && !loading ? (
+        <span style={{ paddingBottom: ".5em" }}>Nothing Found {":("}</span>
       ) : null}
     </>
   );

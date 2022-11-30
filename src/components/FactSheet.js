@@ -5,7 +5,6 @@ import PieCharter from "./PieCharter";
 export default function FactSheet(props) {
   const result = props.result;
   const schoolDemographics = result.latest.student.demographics;
-  console.log(result);
   return (
     <div className="factsheet-wrapper">
       <h1>{result.school.name}</h1>
